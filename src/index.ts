@@ -1,13 +1,13 @@
 import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import morgan from "morgan";
 import { ServerUtils } from "./utils/server";
 import { ENV } from "./configs/variables";
 import { CustomError } from "./utils/error";
 import { ResponseUtils } from "./utils/response";
 import connectDB from "./configs/db";
 import routes from "./routes/index.route";
+import { requestLogger } from "./middlewares/request-logger.middleware";
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ app.use(
 );
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("tiny"));
+app.use(requestLogger);
 
 // ROUTES
 app.use("/api", routes);

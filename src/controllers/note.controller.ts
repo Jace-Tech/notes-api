@@ -3,12 +3,12 @@ import { ResponseUtils } from "../utils/response";
 import NoteService from "../services/note.service";
 import { NoteSchema } from "../schema/note.schema";
 import { NotFoundError } from "../utils/error";
+import { INote } from "../models/note.model";
 
 export class NoteController {
-  static async createNote(req: Request, res: Response, next: NextFunction) {
+  static async createNote(req: Request<{}, {}, INote>, res: Response, next: NextFunction) {
     try {
-      const validatedBody = NoteSchema.createNote.parse(req.body);
-      const note = await NoteService.createNote(validatedBody);
+      const note = await NoteService.createNote(req.body);
       return res.status(201).json(
         ResponseUtils.successResponse({
           data: note,
@@ -20,7 +20,7 @@ export class NoteController {
     }
   }
 
-  static async getAllNotes(req: Request, res: Response, next: NextFunction) {
+  static async getAllNotes(_: Request, res: Response, next: NextFunction) {
     try {
       const notes = await NoteService.getAllNotes();
       return res.status(201).json(
@@ -64,6 +64,28 @@ export class NoteController {
         ResponseUtils.successResponse({
           data: note,
           message: "Note deleted successfully.",
+        }),
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  static async updateNote(req: Request, res: Response, next: NextFunction) {
+    try {
+      const validatedParams = NoteSchema.id.parse(req.params.noteId);
+
+      // CHECK IF NOTE EXISTS
+      const noteExists = await NoteService.getNote(validatedParams);
+      if (!noteExists) {
+        throw new NotFoundError("Note not found.");
+      }
+
+      const note = await NoteService.updateNote(validatedParams, req.body);
+      return res.status(200).json(
+        ResponseUtils.successResponse({
+          data: note,
+          message: "Note updated successfully.",
         }),
       );
     } catch (error) {
