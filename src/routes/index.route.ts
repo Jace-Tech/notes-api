@@ -4,7 +4,7 @@ import noteRouter from "./note.route";
 
 const router = Router();
 
-router.use("/note", noteRouter);
-router.use("/category", categoryRouter);
+router.use("/notes", noteRouter);
+router.use("/categories", categoryRouter);
 
 export default router;

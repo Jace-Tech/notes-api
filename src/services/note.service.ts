@@ -25,6 +25,11 @@ class NoteService {
     const note = await Note.findByIdAndUpdate(id, updates, { new: true, runValidators: true });
     return note?.populate("category");
   }
+
+  async getNotesByCategory(categoryId: string) {
+    const notes = await Note.find({ category: categoryId }).populate("category");
+    return notes;
+  }
 }
 
 const noteService = new NoteService();

@@ -2,15 +2,6 @@
 
 A simple RESTful API for managing notes, built with **Express**, **MongoDB (Mongoose)**, and **TypeScript**.
 
-## Tech Stack
-
-- **Runtime**: Node.js
-- **Framework**: Express v5
-- **Database**: MongoDB via Mongoose
-- **Language**: TypeScript
-- **Validation**: Zod
-- **Package Manager**: pnpm
-
 ## Project Structure
 
 ```
@@ -69,12 +60,23 @@ Base URL: `http://localhost:<PORT>/api`
 
 ### Notes
 
-| Method | Endpoint            | Description       |
-| ------ | ------------------- | ----------------- |
-| POST   | `/api/note`         | Create a note     |
-| GET    | `/api/note`         | Get all notes     |
-| GET    | `/api/note/:noteId` | Get a single note |
-| DELETE | `/api/note/:noteId` | Delete a note     |
+| Method | Endpoint                            | Description               |
+| ------ | ----------------------------------- | ------------------------- |
+| POST   | `/api/notes`                        | Create a note             |
+| GET    | `/api/notes`                        | Get all notes             |
+| GET    | `/api/notes/:noteId`                | Get a single note         |
+| DELETE | `/api/notes/:noteId`                | Delete a note             |
+| PUT    | `/api/notes/:noteId`                | Update a note             |
+| GET    | `/api/notes/categories/:categoryId` | Get all notes by category |
+
+### Categories
+
+| Method | Endpoint                      | Description           |
+| ------ | ----------------------------- | --------------------- |
+| POST   | `/api/categories`             | Create a category     |
+| GET    | `/api/categories`             | Get all categories    |
+| GET    | `/api/categories/:categoryId` | Get a single category |
+| DELETE | `/api/categories/:categoryId` | Delete a category     |
 
 ### Request Body — Create Note
 
@@ -87,12 +89,12 @@ Base URL: `http://localhost:<PORT>/api`
 
 ### Response Format
 
-All responses follow a consistent envelope:
+All responses follow a consistent structure:
 
-```json
+```typescript
 {
-  "success": true,
-  "message": "Note created successfully.",
-  "data": { ... }
+  success: boolean;
+  message: string;
+  data: any;
 }
 ```

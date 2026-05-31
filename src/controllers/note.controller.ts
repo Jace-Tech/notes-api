@@ -92,4 +92,19 @@ export class NoteController {
       return next(error);
     }
   }
+
+  static async getNotesByCategory(req: Request, res: Response, next: NextFunction) {
+    try {
+      const validatedParams = NoteSchema.id.parse(req.params.categoryId);
+      const notes = await NoteService.getNotesByCategory(validatedParams);
+      return res.status(200).json(
+        ResponseUtils.successResponse({
+          data: notes,
+          message: "Notes fetched successfully.",
+        }),
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
 }

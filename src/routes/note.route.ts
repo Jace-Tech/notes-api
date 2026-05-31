@@ -16,4 +16,6 @@ router
   .delete(NoteController.deleteNote)
   .put(validateBody(NoteSchema.updateNote), NoteController.updateNote);
 
+router.get("/categories/:categoryId", NoteController.getNotesByCategory);
+
 export default router;
