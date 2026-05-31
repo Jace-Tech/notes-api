@@ -98,3 +98,7 @@ All responses follow a consistent structure:
   data: any;
 }
 ```
+
+Visit [https://notes.docs.buildwithfern.com/note/get-all-notes](https://notes.docs.buildwithfern.com/note/get-all-notes) to view the API documentation.
+
+Live API endpoint: [https://notes-api-zdlt.onrender.com/](https://notes-api-zdlt.onrender.com/)
