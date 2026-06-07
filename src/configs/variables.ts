@@ -6,6 +6,8 @@ export class ENV {
   public static readonly NODE_ENV: string = process.env.NODE_ENV || "development";
   public static readonly DB_URL: string = process.env.DB_URL || "";
 
+  public static readonly JWT_SECRET: string = process.env.JWT_SECRET || "";
+
   static get isDev(): boolean {
     return ["dev", "development"].includes(this.NODE_ENV);
   }
