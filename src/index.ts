@@ -32,7 +32,7 @@ app.get("/", (_: Request, res: Response) => {
   res.status(200).json(
     ResponseUtils.successResponse({
       data: {
-        link: "https://notes.docs.buildwithfern.com/note/get-all-notes",
+        link: "https://documenter.getpostman.com/view/55366763/2sBXwqqqWZ",
       },
       message: `Note API is running. Visit the link for API documentation.`,
     }),

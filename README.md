@@ -99,6 +99,6 @@ All responses follow a consistent structure:
 }
 ```
 
-Visit [https://notes.docs.buildwithfern.com/note/get-all-notes](https://notes.docs.buildwithfern.com/note/get-all-notes) to view the API documentation.
+Visit [https://documenter.getpostman.com/view/55366763/2sBXwqqqWZ](https://documenter.getpostman.com/view/55366763/2sBXwqqqWZ) to view the API documentation.
 
 Live API endpoint: [https://notes-api-zdlt.onrender.com/](https://notes-api-zdlt.onrender.com/)
