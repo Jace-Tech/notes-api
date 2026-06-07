@@ -8,8 +8,10 @@ A simple RESTful API for managing notes, built with **Express**, **MongoDB (Mong
 src/
 ├── configs/        # Environment variables & database connection
 ├── controllers/    # Route handler logic
+├── middlewares/    # Express middlewares
 ├── models/         # Mongoose schemas & models
 ├── routes/         # Express routers
+├── lib/            # External libraries
 ├── schema/         # Zod validation schemas
 ├── services/       # Database interaction layer
 └── utils/          # Shared utilities (error classes, response helpers, etc.)
@@ -69,6 +71,20 @@ Base URL: `http://localhost:<PORT>/api`
 | PUT    | `/api/notes/:noteId`                | Update a note             |
 | GET    | `/api/notes/categories/:categoryId` | Get all notes by category |
 
+### Authentication
+
+#### Register
+
+| Method | Endpoint             | Description     |
+| ------ | -------------------- | --------------- |
+| POST   | `/api/auth/register` | Register a user |
+
+#### Login
+
+| Method | Endpoint          | Description  |
+| ------ | ----------------- | ------------ |
+| POST   | `/api/auth/login` | Login a user |
+
 ### Categories
 
 | Method | Endpoint                      | Description           |
@@ -98,6 +114,8 @@ All responses follow a consistent structure:
   data: any;
 }
 ```
+
+### Extra
 
 Visit [https://documenter.getpostman.com/view/55366763/2sBXwqqqWZ](https://documenter.getpostman.com/view/55366763/2sBXwqqqWZ) to view the API documentation.
 
