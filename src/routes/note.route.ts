@@ -1,21 +1,33 @@
 import { Router } from "express";
 import { NoteController } from "../controllers/note.controller";
-import { validateBody } from "../middlewares/validate.middleware";
+import * as Middlewares from "../middlewares";
 import { NoteSchema } from "../schema/note.schema";
 
 const router = Router();
 
 router
   .route("/")
-  .post(validateBody(NoteSchema.createNote), NoteController.createNote)
-  .get(NoteController.getAllNotes);
+  .post(
+    Middlewares.authorizationMiddleware,
+    Middlewares.validateBody(NoteSchema.createNote),
+    NoteController.createNote,
+  )
+  .get(Middlewares.authorizationMiddleware, NoteController.getAllNotes);
 
 router
   .route("/:noteId")
-  .get(NoteController.getNote)
-  .delete(NoteController.deleteNote)
-  .put(validateBody(NoteSchema.updateNote), NoteController.updateNote);
+  .get(Middlewares.authorizationMiddleware, NoteController.getNote)
+  .delete(Middlewares.authorizationMiddleware, NoteController.deleteNote)
+  .put(
+    Middlewares.authorizationMiddleware,
+    Middlewares.validateBody(NoteSchema.updateNote),
+    NoteController.updateNote,
+  );
 
-router.get("/categories/:categoryId", NoteController.getNotesByCategory);
+router.get(
+  "/categories/:categoryId",
+  Middlewares.authorizationMiddleware,
+  NoteController.getNotesByCategory,
+);
 
 export default router;

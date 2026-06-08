@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { CategoryController } from "../controllers/category.controller";
-import { validateBody } from "../middlewares/validate.middleware";
+import * as Middlewares from "../middlewares";
 import { CategorySchema } from "../schema/category.schema";
 
 const router = Router();
 
 router
   .route("/")
-  .post(validateBody(CategorySchema.createCategory), CategoryController.createCategory)
+  .post(Middlewares.validateBody(CategorySchema.createCategory), CategoryController.createCategory)
   .get(CategoryController.getAllCategories);
 
 router
