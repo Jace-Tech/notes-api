@@ -24,6 +24,10 @@ router
     NoteController.updateNote,
   );
 
-router.get("/categories/:categoryId", NoteController.getNotesByCategory);
+router.get(
+  "/categories/:categoryId",
+  Middlewares.authorizationMiddleware,
+  NoteController.getNotesByCategory,
+);
 
 export default router;
